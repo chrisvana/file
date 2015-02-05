@@ -14,10 +14,10 @@
 #include <zlib.h>
 #include <string>
 #include <memory>
-#include "common/base/logging.h"
+#include "common/log/log.h"
 #include "recordio.h"
 
-namespace operations_research {
+namespace file {
 const int RecordWriter::kMagicNumber = 0x3ed7230a;
 
 RecordWriter::RecordWriter(File* const file)
@@ -63,4 +63,4 @@ void RecordReader::Uncompress(const char* const source, uint64 source_size,
   }
   CHECK_LE(result_size, static_cast<unsigned long>(output_size));  // NOLINT
 }
-}  // namespace operations_research
+}  // namespace file

@@ -15,12 +15,12 @@
 #define OR_TOOLS_BASE_RECORDIO_H_
 
 #include <string>
-#include "base/file.h"
-#include "base/unique_ptr.h"
+#include <memory>
+#include "file.h"
 
 // This file defines some IO interfaces to compatible with Google
 // IO specifications.
-namespace operations_research {
+namespace file {
 // This class appends a protocol buffer to a file in a binary format.
 // The data written in the file follows the following format (sequentially):
 // - MagicNumber (32 bits) to recognize this format.
@@ -130,6 +130,6 @@ class RecordReader {
 
   File* const file_;
 };
-}  // namespace operations_research
+}  // namespace file
 
 #endif  // OR_TOOLS_BASE_RECORDIO_H_

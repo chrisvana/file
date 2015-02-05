@@ -19,16 +19,16 @@
 #include <string>
 
 #include "common/base/types.h"
-#include "common/base/logging.h"
-#include "third_party/protobuf/descriptor.h"
-#include "third_party/protobuf/message.h"
-#include "third_party/protobuf/text_format.h"
-#include "third_party/protobuf/io/tokenizer.h"
+#include "common/log/log.h"
+#include "google/protobuf/descriptor.h"
+#include "google/protobuf/message.h"
+#include "google/protobuf/text_format.h"
+#include "google/protobuf/io/tokenizer.h"
 #include "status.h"
 
 // This file defines some IO interfaces to compatible with Google
 // IO specifications.
-namespace operations_research {
+namespace file {
 
 class File {
  public:
@@ -110,7 +110,6 @@ class File {
   const std::string name_;
 };
 
-namespace file {
 inline int Defaults() { return 0xBABA; }
 
 // As of 2014-06, these methods can only be used with flags = file::Defaults().
@@ -132,7 +131,5 @@ void WriteProtoToFileOrDie(const google::protobuf::Message& proto,
                            const std::string& file_name);
 
 }  // namespace file
-
-}  // namespace operations_research
 
 #endif  // OR_TOOLS_BASE_FILE_H_

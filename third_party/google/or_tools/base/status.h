@@ -15,10 +15,12 @@
 #define OR_TOOLS_BASE_STATUS_H_
 
 #include <string>
-#include "common/base/logging.h"
+#include "common/log/log.h"
 #include "common/strings/strutil.h"
 
-namespace operations_research {
+// TODO(cvanarsdale): Move this to common/util?
+
+namespace file {
 namespace util {
 
 namespace error {
@@ -42,7 +44,7 @@ struct Status {
 
   std::string ToString() const {
     if (ok()) return "OK";
-    return StrCat("ERROR #", error_code_, ": '", error_message_, "'");
+    return strings::Join("ERROR #", error_code_, ": '", error_message_, "'");
   }
 
   std::string error_message() const { return error_message_; }
@@ -58,6 +60,6 @@ struct Status {
 
 #define CHECK_OK(status) CHECK_EQ("", (status).ToString())
 
-}  // namespace operations_research
+}  // namespace file
 
 #endif  // OR_TOOLS_BASE_STATUS_H_

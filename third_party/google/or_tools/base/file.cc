@@ -23,13 +23,14 @@
 
 #include <cstring>
 #include <string>
+#include <memory>
+#include <iostream>
 
-#include "base/file.h"
-#include "base/logging.h"
-#include "base/unique_ptr.h"
-#include "base/join.h"
+#include "file.h"
+#include "common/log/log.h"
+#include "common/strings/strutil.h"
 
-namespace operations_research {
+namespace file {
 
 File::File(FILE* const f_des, const std::string& name) : f_(f_des), name_(name) {}
 
@@ -129,7 +130,6 @@ bool File::Open() const { return f_ != NULL; }
 
 void File::Init() {}
 
-namespace file {
 util::Status GetContents(const std::string& filename, std::string* output, int flags) {
   if (flags == Defaults()) {
     File* file = File::Open(filename, "r");
@@ -139,7 +139,7 @@ util::Status GetContents(const std::string& filename, std::string* output, int f
     }
   }
   return util::Status(util::error::INVALID_ARGUMENT,
-                      StrCat("Could not read '", filename, "'"));
+                      strings::Join("Could not read '", filename, "'"));
 }
 
 util::Status WriteString(File* file, const std::string& contents, int flags) {
@@ -148,7 +148,7 @@ util::Status WriteString(File* file, const std::string& contents, int flags) {
     return util::Status::OK;
   }
   return util::Status(util::error::INVALID_ARGUMENT,
-                      StrCat("Could not write ", contents.size(), " bytes"));
+                      strings::Join("Could not write ", contents.size(), " bytes"));
 }
 
 util::Status SetContents(const std::string& filename, const std::string& contents,
@@ -227,5 +227,3 @@ void WriteProtoToFileOrDie(const google::protobuf::Message& proto,
 }
 
 }  // namespace file
-
-}  // namespace operations_research
