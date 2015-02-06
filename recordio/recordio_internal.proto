@@ -1,13 +1,13 @@
 // Copyright 2015
 // Author: Christopher Van Arsdale
 
-package file.internal;
+package file.recordio;
 
 message RecordioHeaderProto {
   optional uint64 uncompressed_size = 1;
   optional uint64 compressed_size = 2;
 
-  // TODO: checksum.
+  // TODO: checksum, block encoding, etc.
 }
 
 

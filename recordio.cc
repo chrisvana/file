@@ -10,7 +10,7 @@
 #include "common/strings/stringpiece.h"
 #include "third_party/file/file.h"
 #include "third_party/file/recordio.h"
-#include "third_party/file/recordio_internal.pb.h"
+#include "third_party/file/internal/recordio_internal.pb.h"
 #include "google/protobuf/message.h"
 
 using std::string;
