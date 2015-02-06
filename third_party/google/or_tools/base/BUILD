@@ -1,8 +1,8 @@
 [
  { "cc_library": {
     "name": "or_tools",
-    "cc_headers": [ "file.h", "status.h", "recordio.h" ],
-    "cc_sources": [ "file.cc", "recordio.cc" ],
+    "cc_headers": [ "file.h", "status.h" ],
+    "cc_sources": [ "file.cc" ],
     "dependencies": [ "//common/strings:strutil",
                       "//common/base:types",
                       "//common/log:log",
