@@ -103,6 +103,14 @@ func (r *RecordioReader) ReadRecord() ([]byte, error) {
   return buf, nil
 }
 
+func (r *RecordioReader) ReadProtocolMessage(message interface{}) error {
+  data, err := r.ReadRecord()
+  if err != nil {
+    return err
+  }
+  return proto.Unmarshal(data, message.(proto.Message))
+}
+
 type RecordioWriter struct {
 	writer io.Writer
   Compress bool
@@ -156,4 +164,12 @@ func (r *RecordioWriter) WriteRecord(data []byte) error {
   }
 
   return nil
+}
+
+func (r *RecordioWriter) WriteProtocolMessage(message interface{}) error {
+  data, err := proto.Marshal(message.(proto.Message))
+  if err != nil {
+    return err
+  }
+  return r.WriteRecord(data)
 }
