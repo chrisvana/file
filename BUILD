@@ -8,15 +8,5 @@
   "name": "file",
   "cc_headers": [ "file.h" ],
   "dependencies": [ "third_party/google/or_tools/base:or_tools" ]
-} },
-{ "cc_library": {
-  "name": "recordio",
-  "cc_headers": [ "recordio.h" ],
-  "cc_sources": [ "recordio.cc" ],
-  "dependencies": [ ":file",
-                    "internal:recordio_internal_proto",
-                    "//common/strings:bits",
-                    "//common/strings:stringpiece" ],
-  "cc_linker_args": [ "-lz" ]  // zlib
 } }
 ]

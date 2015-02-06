@@ -3,7 +3,7 @@
 
 #include <string>
 #include "common/test/test.h"
-#include "third_party/file/recordio.h"
+#include "third_party/file/recordio/recordio.h"
 
 using std::string;
 

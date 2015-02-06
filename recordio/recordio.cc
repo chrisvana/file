@@ -9,8 +9,8 @@
 #include "common/strings/bits.h"
 #include "common/strings/stringpiece.h"
 #include "third_party/file/file.h"
-#include "third_party/file/recordio.h"
-#include "third_party/file/internal/recordio_internal.pb.h"
+#include "third_party/file/recordio/recordio.h"
+#include "third_party/file/recordio/recordio_internal.pb.h"
 #include "google/protobuf/message.h"
 
 using std::string;
@@ -103,7 +103,7 @@ bool RecordReader::ReadRecord(string* bytes) {
   uint32 header_size = strings::DecodeUInt32(scratch.data());
 
   // Read header
-  internal::RecordioHeaderProto header;
+  ::file::recordio::RecordioHeaderProto header;
   scratch.resize(header_size);
   if (file_->Read(&scratch[0], scratch.size()) != scratch.size()) {
     LOG(ERROR) << "Could not read header.";
@@ -184,7 +184,7 @@ bool RecordWriter::WriteRecord(const StringPiece& bytes) {
   string compressed_buffer;
   string header;
   {
-    internal::RecordioHeaderProto header_proto;
+    ::file::recordio::RecordioHeaderProto header_proto;
     header_proto.set_uncompressed_size(bytes.size());
     if (compression_) {
       if (CompressRecord(bytes, &compressed_buffer)) {
